@@ -1,22 +1,20 @@
-<div>
-  <input [(ngModel)]="name" placeholder="Имя животного">
-  <input [(ngModel)]="ageAnimal" type="number" placeholder="Возраст">
-  <input [(ngModel)]="weight" type="number" placeholder="Вес">
-  <input [(ngModel)]="gender" placeholder="Пол">
-  <button (click)="setAnimal()">Установить свойства животного</button>
+<div *ngIf="gamingComputer">
+  <h2>Gaming Computer</h2>
+  <p>Processor: {{ gamingComputer.processor }}</p>
+  <p>RAM: {{ gamingComputer.RAM }}</p>
+  <p>Memory: {{ gamingComputer.memory }}</p>
 </div>
 
-<!-- Plant Section -->
-<div>
-  <input [(ngModel)]="species" placeholder="Вид растения">
-  <input [(ngModel)]="agePlant" type="number" placeholder="Возраст растения">
-  <input [(ngModel)]="height" type="number" placeholder="Высота растения">
-  <input [(ngModel)]="state" placeholder="Состояние растения">
-  <button (click)="setPlant()">Установить свойства растения</button>
+<div *ngIf="workstationComputer">
+  <h2>works Computer</h2>
+  <p>Processor: {{ workstationComputer.processor }}</p>
+  <p>RAM: {{ workstationComputer.RAM }}</p>
+  <p>Memory: {{ workstationComputer.memory }}</p>
 </div>
 
-<!-- Interaction Section -->
-<button (click)="interactWithPlant(1)">Расти</button>
-<button (click)="interactWithPlant(2)">цвести</button>
-<button (click)="interactWithPlant(3)">плодоносить</button>
-<button (click)="interactWithPlant(4)">кушать</button>
+<div *ngIf="minstationComputer">
+  <h2>Min Computer</h2>
+  <p>Processor: {{ minstationComputer.processor }}</p>
+  <p>RAM: {{ minstationComputer.RAM }}</p>
+  <p>Memory: {{ minstationComputer.memory }}</p>
+</div>

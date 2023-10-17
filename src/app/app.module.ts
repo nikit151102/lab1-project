@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { AnimalComponent } from './animal'
-import { PlantComponent } from './plants';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,8 +13,7 @@ import { PlantComponent } from './plants';
     FormsModule
   ],
   providers: [
-    AnimalComponent,
-    PlantComponent
+
   ],
   bootstrap: [AppComponent]
 })
