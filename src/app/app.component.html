@@ -1,20 +1,54 @@
-<div *ngIf="gamingComputer">
-  <h2>Gaming Computer</h2>
-  <p>Processor: {{ gamingComputer.processor }}</p>
-  <p>RAM: {{ gamingComputer.RAM }}</p>
-  <p>Memory: {{ gamingComputer.memory }}</p>
+
+<div>
+  <h2>Create Sedan</h2>
+  <label for="brand">Brand:</label>
+  <input [(ngModel)]="brand" id="brand" type="text" required><br>
+  <label for="model">Model:</label>
+  <input [(ngModel)]="model" id="model" type="text" required><br>
+  <label for="year">Year:</label>
+  <input [(ngModel)]="year" id="year" type="number" required><br>
+  <label for="doors">Number of Doors:</label>
+  <input [(ngModel)]="numberOfDoors" id="doors" type="number" required><br>
+  <button (click)="createSedan()">Create Sedan</button>
 </div>
 
-<div *ngIf="workstationComputer">
-  <h2>works Computer</h2>
-  <p>Processor: {{ workstationComputer.processor }}</p>
-  <p>RAM: {{ workstationComputer.RAM }}</p>
-  <p>Memory: {{ workstationComputer.memory }}</p>
+<div>
+  <h2>Create SUV</h2>
+  <label for="trunk">Trunk Size:</label>
+  <input [(ngModel)]="trunkSize" id="trunk" type="text" required><br>
+  <button (click)="createSUV()">Create SUV</button>
 </div>
 
-<div *ngIf="minstationComputer">
-  <h2>Min Computer</h2>
-  <p>Processor: {{ minstationComputer.processor }}</p>
-  <p>RAM: {{ minstationComputer.RAM }}</p>
-  <p>Memory: {{ minstationComputer.memory }}</p>
+<div>
+  <h2>Create Sports Car</h2>
+  <label for="speed">Top Speed:</label>
+  <input [(ngModel)]="topSpeed" id="speed" type="number" required><br>
+  <button (click)="createSportsCar()">Create Sports Car</button>
+</div>
+
+<div>
+  <h2>Clone Cars</h2>
+  <button (click)="cloneCar('sedan')">Clone Sedan</button>
+  <button (click)="cloneCar('suv')">Clone SUV</button>
+  <button (click)="cloneCar('sports')">Clone Sports Car</button>
+</div>
+
+
+
+<div>
+  <h2>Created Cars</h2>
+  <div *ngFor="let car of carFactoryService.getCreatedCars()">
+    <h3>{{ car.car.brand }} {{ car.car.model }}</h3>
+    <p>Year: {{ car.car.year }}</p>
+    <p>memoryLocation: {{ car.memoryLocation }}</p>
+  </div>
+</div>
+
+<div>
+  <h2>Cloned Cars</h2>
+  <div *ngFor="let car of carFactoryService.getClonedCars()">
+    <h3>{{ car.car.brand }} {{ car.car.model }}</h3>
+    <p>Year: {{ car.car.year }}</p>
+    <p>memoryLocation: {{ car.memoryLocation }}</p>
+  </div>
 </div>

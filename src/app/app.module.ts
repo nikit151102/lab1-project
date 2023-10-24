@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { CarFactoryService } from './car-factory.service';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-
+    CarFactoryService 
   ],
   bootstrap: [AppComponent]
 })

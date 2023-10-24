@@ -1,53 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-import { Director } from './Director';
-import { GamingComputerBuilder, WorkstationComputerBuilder, MinComputerBuilder } from './builder';
+import { CarFactoryService } from './car-factory.service';
+import { SUVCar, SedanCar, SportsCar } from './car-models';
+import { Car } from './car.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  brand: string = "";
+  model: string = "";
+  year: number = 0;
+  numberOfDoors: number = 0;
+  trunkSize: string = "";
+  topSpeed: number = 0;
 
-  gamingComputer: any; 
-  workstationComputer: any; 
-  minstationComputer: any; 
-  ngOnInit() {
-    // Создаем строителей
-    const gamingBuilder = new GamingComputerBuilder();
-    const workstationBuilder = new WorkstationComputerBuilder();
-    const minComputerBuilder = new MinComputerBuilder();  
-    // Создаем директора и инициализируем его строителя
-    const director = new Director(gamingBuilder);
+  constructor(public carFactoryService: CarFactoryService) { }
 
-    // Собираем игровой компьютер
-    director.constructComputer(3.2, 16, 1000);
-
-    // Получаем готовый игровой компьютер и выводим его характеристики
-    this.gamingComputer = gamingBuilder.getResult();
-
-    // Меняем строителя на рабочую станцию
-    director.setComputerBuilder(workstationBuilder);
-
-    // Собираем рабочую станцию
-    director.constructComputer(3.0, 32, 2000);
-
-    // Получаем готовую рабочую станцию и выводим ее характеристики
-     this.workstationComputer = workstationBuilder.getResult();
-   
-    // Меняем строителя 
-    director.setComputerBuilder(minComputerBuilder);
-
-    // Собираем 
-    director.constructComputer(2.0, 8, 500);
-
-    // Получаем  
-     this.minstationComputer = workstationBuilder.getResult();
-
-
-
+  sedanNew: any
+  createSedan(): void {
+    const car = new SedanCar(this.brand, this.model, this.year, this.numberOfDoors);
+    const memoryLocation = `0x${(Math.random() * 0xFFFFFFFF).toString(16)}`;
+    this.carFactoryService.registerCar('sedan', car);
+    this.carFactoryService.addCreatedCar(car, memoryLocation);
+    this.sedanNew = car
   }
+  
+  createSUV(): void {
+    const car = new SUVCar(this.brand, this.model, this.year, this.trunkSize);
+    const memoryLocation = `0x${(Math.random() * 0xFFFFFFFF).toString(16)}`;
+    this.carFactoryService.registerCar('suv', car);
+    this.carFactoryService.addCreatedCar(car, memoryLocation);
+  }
+  
+  createSportsCar(): void {
+    const car = new SportsCar(this.brand, this.model, this.year, this.topSpeed);
+    const memoryLocation = `0x${(Math.random() * 0xFFFFFFFF).toString(16)}`;
+    this.carFactoryService.registerCar('sports', car);
+    this.carFactoryService.addCreatedCar(car, memoryLocation);
+  }
+  
+  cloneCar(type: string): void {
+    const clonedCar = this.carFactoryService.getCar(type);
+    const memoryLocation = `0x${(Math.random() * 0xFFFFFFFF).toString(16)}`;
+    this.carFactoryService.addClonedCar(clonedCar, memoryLocation);
 
+    if(this.sedanNew === clonedCar){
+      console.log("true")
 
-
+    }else {
+      console.log("false")
+    }
+    
+  }
+  
 }
